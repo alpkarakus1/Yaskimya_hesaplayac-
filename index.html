@@ -161,7 +161,7 @@
                 </div>
             </div>
             
-            <!-- Ana Ekrana Ekle Butonu (Daima Görünür & Akıllı Yönlendirici) -->
+            <!-- Ana Ekrana Ekle Butonu -->
             <button id="installBtn" class="mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-2xl font-bold shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:scale-95 transition-all flex items-center justify-center gap-2 text-sm border border-white/20 mx-auto md:mx-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                 Ana Ekrana Ekle
@@ -368,7 +368,7 @@
             </div>
         </div>
 
-        <!-- KART 4: Normalite (N) Hesaplama -->
+        <!-- KART 4: Normalite (N) Hesaplama (Akıllı Katı/Sıvı & Hazır Seçenekli) -->
         <div class="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/40 border border-white relative overflow-hidden group">
             <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-400 to-fuchsia-500"></div>
             <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
@@ -382,29 +382,88 @@
                 <div class="space-y-5 col-span-1 md:col-span-3">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Hedef Normalite <span class="text-slate-400 font-normal">(N)</span></label>
-                            <input type="number" id="normalityTarget" inputmode="decimal" step="0.001" placeholder="Örn: 0.1" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white hover:border-purple-300 transition-all text-lg text-slate-800 font-medium placeholder:text-slate-400">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Madde Türü</label>
+                            <select id="normalityType" class="block w-full px-4 py-3 bg-purple-50 border border-purple-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 text-purple-900 font-bold text-sm">
+                                <option value="solid" selected>Katı (Tartım)</option>
+                                <option value="liquid">Sıvı / Asit Şişesi</option>
+                            </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Hedef Hacim <span class="text-slate-400 font-normal">(mL)</span></label>
-                            <input type="number" id="normalityVolume" inputmode="decimal" step="1" placeholder="Örn: 250" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white hover:border-purple-300 transition-all text-lg text-slate-800 font-medium placeholder:text-slate-400">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Hedef Normalite <span class="text-slate-400 font-normal">(N)</span></label>
+                            <input type="number" id="normalityTarget" inputmode="decimal" step="any" placeholder="Örn: 0.1" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white text-lg text-slate-800 font-medium">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 pt-2">
+
+                    <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Molar Kütle <span class="text-slate-400 font-normal">(MA)</span></label>
-                            <input type="number" id="normalityMA" inputmode="decimal" step="0.01" placeholder="Örn: 98.08" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white hover:border-purple-300 transition-all text-lg text-slate-800 font-medium placeholder:text-slate-400">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Hedef Hacim <span class="text-slate-400 font-normal">(mL)</span></label>
+                            <input type="number" id="normalityVolume" inputmode="decimal" step="any" placeholder="Örn: 250" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white text-lg text-slate-800 font-medium">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-1.5">Tesir Değerliği <span class="text-slate-400 font-normal">(z)</span></label>
-                            <input type="number" id="normalityZ" inputmode="numeric" step="1" placeholder="Örn: 2" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white hover:border-purple-300 transition-all text-lg text-slate-800 font-medium placeholder:text-slate-400">
+                            <input type="number" id="normalityZ" inputmode="numeric" step="1" placeholder="Örn: 2" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white text-lg text-slate-800 font-medium">
+                        </div>
+                    </div>
+
+                    <!-- Katı İçin Hazır Seçenek ve MA Alanı -->
+                    <div id="normality-solid-fields" class="space-y-3">
+                        <div class="flex justify-between items-end">
+                            <label class="block text-sm font-semibold text-slate-700">Molar Kütle <span class="text-slate-400 font-normal">(g/mol - MA)</span></label>
+                            <select id="normalityChemicalPreset" class="text-xs border border-purple-200 rounded-xl bg-purple-50 px-3 py-1.5 text-purple-700 font-bold focus:outline-none cursor-pointer max-w-[160px] truncate shadow-sm">
+                                <option value="">+ Hazır Katı Seç</option>
+                                <optgroup label="Asitler / Bazlar">
+                                    <option value="36.46">Hidroklorik Asit (HCl)</option>
+                                    <option value="98.079">Sülfürik Asit (H2SO4)</option>
+                                    <option value="63.01">Nitrik Asit (HNO3)</option>
+                                    <option value="39.997">Sodyum Hidroksit (NaOH)</option>
+                                    <option value="56.105">Potasyum Hidroksit (KOH)</option>
+                                </optgroup>
+                                <optgroup label="Tuzlar & Standartlar">
+                                    <option value="58.44">Sodyum Klorür (NaCl)</option>
+                                    <option value="105.99">Sodyum Karbonat (Na2CO3)</option>
+                                    <option value="84.007">Sodyum Bikarbonat (NaHCO3)</option>
+                                    <option value="158.034">Potasyum Permanganat (KMnO4)</option>
+                                    <option value="294.185">Potasyum Dikromat (K2Cr2O7)</option>
+                                    <option value="169.87">Gümüş Nitrat (AgNO3)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <input type="number" id="normalityMA" inputmode="decimal" step="any" placeholder="Örn: 105.99" class="block w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 focus:bg-white text-lg text-slate-800 font-medium">
+                    </div>
+
+                    <!-- Sıvı İçin Hazır Şişe ve Etiket Alanları (Başlangıçta Gizli) -->
+                    <div id="normality-liquid-fields" class="hidden space-y-3 pt-2 border-t border-slate-100">
+                        <div class="flex justify-between items-end">
+                            <label class="block text-sm font-semibold text-slate-700">Şişe Etiket Bilgileri</label>
+                            <select id="normalityAcidPreset" class="text-xs border border-purple-200 rounded-xl bg-purple-50 px-3 py-1.5 text-purple-700 font-bold focus:outline-none cursor-pointer max-w-[160px] truncate shadow-sm">
+                                <option value="">+ Hazır Şişe Seç</option>
+                                <option value="37,1.19,36.46">Hidroklorik Asit (HCl) - %37</option>
+                                <option value="98,1.84,98.08">Sülfürik Asit (H2SO4) - %98</option>
+                                <option value="65,1.40,63.01">Nitrik Asit (HNO3) - %65</option>
+                                <option value="100,1.05,60.05">Glasiyel Asetik Asit - %100</option>
+                                <option value="25,0.90,17.03">Amonyak Çözeltisi (NH3) - %25</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Saflık (%)</label>
+                                <input type="number" id="normalityPurity" inputmode="decimal" step="any" placeholder="98" class="block w-full px-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl shadow-sm text-slate-800 font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Yoğunluk (d)</label>
+                                <input type="number" id="normalityDensity" inputmode="decimal" step="any" placeholder="1.84" class="block w-full px-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl shadow-sm text-slate-800 font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Mol K. (MA)</label>
+                                <input type="number" id="normalityLiquidMA" inputmode="decimal" step="any" placeholder="98.08" class="block w-full px-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl shadow-sm text-slate-800 font-medium">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-span-1 md:col-span-2 bg-gradient-to-br from-purple-50 to-fuchsia-50 rounded-3xl p-6 flex flex-col justify-center items-center border border-purple-100/50 shadow-lg shadow-purple-900/5 hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden">
                     <div class="absolute -right-6 -top-6 w-24 h-24 bg-purple-200/40 rounded-full blur-2xl"></div>
-                    <span class="text-sm text-purple-600/80 font-bold uppercase tracking-wider mb-2 z-10 text-center">Tartılması Gereken</span>
+                    <span id="normalityResultTitle" class="text-sm text-purple-600/80 font-bold uppercase tracking-wider mb-2 z-10 text-center">Tartılması Gereken</span>
                     <span id="normalityResult" class="text-4xl md:text-5xl font-black text-purple-700 tracking-tight z-10 text-center">0.0000<span class="text-2xl font-bold ml-1 text-purple-500/60">g</span></span>
                 </div>
             </div>
@@ -697,22 +756,85 @@
             }
         });
 
+        // --- Normalite (Katı / Sıvı Seçenekli & Hazır Seçimler) ---
+        const normalityTypeSelect = document.getElementById('normalityType');
+        const normalitySolidFields = document.getElementById('normality-solid-fields');
+        const normalityLiquidFields = document.getElementById('normality-liquid-fields');
+        const normalityResultTitle = document.getElementById('normalityResultTitle');
+
+        normalityTypeSelect.addEventListener('change', function() {
+            if (this.value === 'solid') {
+                normalitySolidFields.classList.remove('hidden');
+                normalityLiquidFields.classList.add('hidden');
+                normalityResultTitle.innerText = "Tartılması Gereken";
+            } else {
+                normalitySolidFields.classList.add('hidden');
+                normalityLiquidFields.classList.remove('hidden');
+                normalityResultTitle.innerText = "Çekilecek Hacim";
+            }
+            calculateNormality();
+        });
+
+        document.getElementById('normalityChemicalPreset').addEventListener('change', function() {
+            if (this.value) {
+                document.getElementById('normalityMA').value = this.value;
+                calculateNormality();
+                this.value = "";
+            }
+        });
+
+        document.getElementById('normalityAcidPreset').addEventListener('change', function() {
+            if (this.value) {
+                const [purity, density, ma] = this.value.split(',');
+                document.getElementById('normalityPurity').value = purity;
+                document.getElementById('normalityDensity').value = density;
+                document.getElementById('normalityLiquidMA').value = ma;
+                calculateNormality();
+                this.value = "";
+            }
+        });
+
         function calculateNormality() {
+            const type = normalityTypeSelect.value;
             const n = parseFloat(document.getElementById('normalityTarget').value) || 0;
             const v = parseFloat(document.getElementById('normalityVolume').value) || 0;
-            const ma = parseFloat(document.getElementById('normalityMA').value) || 0;
             const z = parseFloat(document.getElementById('normalityZ').value) || 0;
             
-            if (n > 0 && v > 0 && ma > 0 && z > 0) {
-                const mass = (n * ma * v) / (1000 * z);
-                document.getElementById('normalityResult').innerHTML = mass.toFixed(4) + '<span class="text-2xl font-bold ml-1 text-purple-500/60">g</span>';
+            if (n > 0 && v > 0 && z > 0) {
+                if (type === 'solid') {
+                    const ma = parseFloat(document.getElementById('normalityMA').value) || 0;
+                    if (ma > 0) {
+                        const mass = (n * ma * v) / (1000 * z);
+                        document.getElementById('normalityResult').innerHTML = mass.toFixed(4) + '<span class="text-2xl font-bold ml-1 text-purple-500/60">g</span>';
+                    } else {
+                        document.getElementById('normalityResult').innerHTML = '0.0000<span class="text-2xl font-bold ml-1 text-purple-500/60">g</span>';
+                    }
+                } else {
+                    const purity = parseFloat(document.getElementById('normalityPurity').value) || 0;
+                    const density = parseFloat(document.getElementById('normalityDensity').value) || 0;
+                    const ma = parseFloat(document.getElementById('normalityLiquidMA').value) || 0;
+                    
+                    if (purity > 0 && density > 0 && ma > 0) {
+                        const stockNormality = (10 * density * purity * z) / ma;
+                        const requiredVolume = (n * v) / stockNormality;
+                        document.getElementById('normalityResult').innerHTML = requiredVolume.toFixed(2) + '<span class="text-2xl font-bold ml-1 text-purple-500/60">mL</span>';
+                    } else {
+                        document.getElementById('normalityResult').innerHTML = '0.00<span class="text-2xl font-bold ml-1 text-purple-500/60">mL</span>';
+                    }
+                }
             } else {
-                document.getElementById('normalityResult').innerHTML = '0.0000<span class="text-2xl font-bold ml-1 text-purple-500/60">g</span>';
+                let unit = type === 'solid' ? 'g' : 'mL';
+                let zeros = type === 'solid' ? '0.0000' : '0.00';
+                document.getElementById('normalityResult').innerHTML = `${zeros}<span class="text-2xl font-bold ml-1 text-purple-500/60">${unit}</span>`;
             }
         }
 
-        ['normalityTarget', 'normalityVolume', 'normalityMA', 'normalityZ'].forEach(id => {
-            document.getElementById(id).addEventListener('input', calculateNormality);
+        ['normalityType', 'normalityTarget', 'normalityVolume', 'normalityZ', 'normalityMA', 'normalityPurity', 'normalityDensity', 'normalityLiquidMA'].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) {
+                el.addEventListener('input', calculateNormality);
+                el.addEventListener('change', calculateNormality);
+            }
         });
 
 
@@ -731,7 +853,6 @@
             return ('standalone' in window.navigator && window.navigator.standalone) || window.matchMedia('(display-mode: standalone)').matches;
         };
 
-        // Eğer uygulama zaten ana ekrandan açıldıysa butonu gizle
         if (isStandalone()) {
             installBtn.classList.add('hidden');
         }
@@ -743,15 +864,12 @@
 
         installBtn.addEventListener('click', async () => {
             if (isIos()) {
-                // iPhone kullanıcıları için rehber alert veya bilgi kutusu
                 alert("iPhone'da ana ekrana eklemek için:\n\n1. Safari tarayıcısının altındaki 'Paylaş' (kare ve yukarı ok) ikonuna basın.\n2. Açılan menüden '+ Ana Ekrana Ekle' seçeneğini seçin.");
             } else if (deferredPrompt !== null) {
-                // Android / Chrome kullanıcıları için otomatik yükleme penceresi
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 deferredPrompt = null;
             } else {
-                // Eğer tarayıcı otomatik tetiklemediyse genel bilgi
                 alert("Bu tarayıcının menüsünden (sağ üst üç nokta) 'Ana Ekrana Ekle' veya 'Uygulamayı Yükle' seçeneğini seçerek ana ekranınıza sabitleyebilirsiniz.");
             }
         });
