@@ -88,16 +88,40 @@
         </div>
     </div>
 
-    <!-- ANA EKRANA EKLE BİLGİLENDİRME MODALI -->
+    <!-- ANA EKRANA EKLE BİLGİLENDİRME MODALI (GÜNCELLENMİŞ) -->
     <div id="install-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden p-4 transition-opacity">
-        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl text-left relative">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl text-left relative max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-3">
-                <h3 class="text-xl font-bold text-slate-800">Uygulamayı Kur</h3>
+                <h3 class="text-xl font-bold text-slate-800">Uygulamayı Ana Ekrana Ekle</h3>
                 <button onclick="hideInstallModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl">&times;</button>
             </div>
             
-            <div id="install-instructions" class="space-y-3 text-sm text-slate-600 mb-5">
-                <!-- İçerik JavaScript ile cihaza göre dinamik dolacak -->
+            <div class="space-y-4 text-sm text-slate-600 mb-6">
+                <!-- iPhone Bölümü (Güncel Safari) -->
+                <div class="p-4 bg-blue-50/70 border border-blue-100 rounded-2xl">
+                    <p class="font-bold text-blue-900 mb-1.5 flex items-center gap-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                        iPhone / iPad (Safari) için:
+                    </label>
+                    <ol class="list-decimal list-inside space-y-1 text-slate-700 text-xs font-medium">
+                        <li>Adres çubuğundaki <strong>üç nokta (...)</strong> ikonuna veya alt menüdeki <strong>Paylaş</strong> ikonuna basın.</li>
+                        <li>Açılan menüden <strong>"Paylaş..."</strong> seçeneğine dokunun.</li>
+                        <li>Çıkan listeden aşağı kaydırıp <strong>"+ Ana Ekrana Ekle"</strong> seçeneğini seçin ve kaydedin.</li>
+                    </ol>
+                </div>
+
+                <!-- Android Bölümü -->
+                <div class="p-4 bg-emerald-50/70 border border-emerald-100 rounded-2xl">
+                    <p class="font-bold text-emerald-900 mb-1.5 flex items-center gap-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9-3 3 3 3"/></svg>
+                        Android (Chrome / Edge) için:
+                    </label>
+                    <ol class="list-decimal list-inside space-y-1 text-slate-700 text-xs font-medium">
+                        <li>Sağ üst köşedeki <strong>üç nokta menu</strong> ikonuna basın.</li>
+                        <li><strong>"Uygulamayı Yükle"</strong> veya <strong>"Ana Ekrana Ekle"</strong> seçeneğini seçin.</li>
+                        <li>Onay vererek ekranınıza sabitleyin.</li>
+                    </ol>
+                </div>
             </div>
 
             <button onclick="hideInstallModal()" class="w-full bg-blue-600 text-white font-bold py-2.5 rounded-xl shadow-md hover:bg-blue-700 transition-colors">Anladım</button>
@@ -562,28 +586,7 @@
             installModal.classList.add('hidden');
         }
 
-        // --- Akıllı "Ana Ekrana Ekle" Yönlendiricisi ---
         function handleInstallClick() {
-            const instructions = document.getElementById('install-instructions');
-            if (isIos()) {
-                instructions.innerHTML = `
-                    <p class="font-semibold text-slate-800 mb-2">iPhone / iPad (Safari) için:</p>
-                    <ol class="list-decimal list-inside space-y-1.5 text-slate-600 text-xs">
-                        <li>Ekranın altındaki <strong>Paylaş</strong> ikonuna (kare içinde yukarı ok ↥) basın.</li>
-                        <li>Açılan menüde aşağı kaydırıp <strong>"+ Ana Ekrana Ekle"</strong> seçeneğini bulun ve dokunun.</li>
-                        <li>Sağ üst köşedeki <strong>Ekle</strong> butonuna basın.</li>
-                    </ol>
-                `;
-            } else {
-                instructions.innerHTML = `
-                    <p class="font-semibold text-slate-800 mb-2">Android / Bilgisayar için:</p>
-                    <ol class="list-decimal list-inside space-y-1.5 text-slate-600 text-xs">
-                        <li>Tarayıcınızın sağ üst köşesindeki <strong>üç nokta menu</strong> ikonuna tıklayın.</li>
-                        <li><strong>"Uygulamayı Yükle"</strong> veya <strong>"Ana Ekrana Ekle"</strong> seçeneğini seçin.</li>
-                        <li>Onay vererek ekranınıza sabitleyin.</li>
-                    </ol>
-                `;
-            }
             installModal.classList.remove('hidden');
         }
 
@@ -880,26 +883,6 @@
             if(el) {
                 el.addEventListener('input', calculateNormality);
                 el.addEventListener('change', calculateNormality);
-            }
-        });
-
-
-        // ==========================================
-        // 3. PWA VE CİHAZ ALGILAMA MANTIĞI
-        // ==========================================
-        const isIos = () => {
-          const userAgent = window.navigator.userAgent.toLowerCase();
-          return /iphone|ipad|ipod/.test(userAgent);
-        };
-
-        const isStandalone = () => {
-            return ('standalone' in window.navigator && window.navigator.standalone) || window.matchMedia('(display-mode: standalone)').matches;
-        };
-
-        window.addEventListener('load', () => {
-            if (isStandalone()) {
-                const btn = document.querySelector('button[onclick="handleInstallClick()"]');
-                if (btn) btn.style.display = 'none';
             }
         });
     </script>
